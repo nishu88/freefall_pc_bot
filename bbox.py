@@ -6,10 +6,11 @@ from ctypes import *
 
 from PIL import Image, ImageGrab
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+##l=[]
 
 class Snippy(QtWidgets.QWidget):
     def __init__(self):
+        
         super().__init__()
         root = tk.Tk()
         screen_width = root.winfo_screenwidth()
@@ -50,63 +51,30 @@ class Snippy(QtWidgets.QWidget):
 
         image = ImageGrab.grab(bbox=(x1, y1, x2, y2))
         print(x1,y1,x2,y2)
+        f = open("bbox_values.txt", "w")
+        f.write(str(x1)+" "+str(y1)+" "+str(x2)+" "+str(y2))
+##        l.append(x1)
+##        l.append(y1)
+##        l.append(x2)
+##        l.append(y2)
+##        print(l)
+        return
 
-##        HGLOBAL = HANDLE
-##        SIZE_T = c_size_t
-##        GHND = 0x0042
-##        GMEM_SHARE = 0x2000
-##
-##        GlobalAlloc = windll.kernel32.GlobalAlloc
-##        GlobalAlloc.restype = HGLOBAL
-##        GlobalAlloc.argtypes = [UINT, SIZE_T]
-##
-##        GlobalLock = windll.kernel32.GlobalLock
-##        GlobalLock.restype = LPVOID
-##        GlobalLock.argtypes = [HGLOBAL]
-##
-##        GlobalUnlock = windll.kernel32.GlobalUnlock
-##        GlobalUnlock.restype = BOOL
-##        GlobalUnlock.argtypes = [HGLOBAL]
-##
-##        CF_DIB = 8
-##
-##        OpenClipboard = windll.user32.OpenClipboard
-##        OpenClipboard.restype = BOOL 
-##        OpenClipboard.argtypes = [HWND]
-##
-##        EmptyClipboard = windll.user32.EmptyClipboard
-##        EmptyClipboard.restype = BOOL
-##        EmptyClipboard.argtypes = None
-##
-##        SetClipboardData = windll.user32.SetClipboardData
-##        SetClipboardData.restype = HANDLE
-##        SetClipboardData.argtypes = [UINT, HANDLE]
-##
-##        CloseClipboard = windll.user32.CloseClipboard
-##        CloseClipboard.restype = BOOL
-##        CloseClipboard.argtypes = None
-##
-####        output = BytesIO()
-####        image.convert("RGB").save(output, "BMP")
-####        data = output.getvalue()[14:]
-####        output.close()
-##
-##        hData = GlobalAlloc(GHND | GMEM_SHARE, len(data))
-##        pData = GlobalLock(hData)
-##        memmove(pData, data, len(data))
-##        GlobalUnlock(hData)
-##
-##        OpenClipboard(None)
-##        EmptyClipboard()
-##        SetClipboardData(CF_DIB, pData)
-        CloseCxlipboard()
+
+        #CloseClipboard()
+##        sys.exit(app.exec_())
+        
+def main():
+    
+        app = QtWidgets.QApplication(sys.argv)
+        window = Snippy()
+        window.show()
+        app.aboutToQuit.connect(app.deleteLater)
+        sys.exit(app.exec_())
+        
+if __name__ == '__main__':
+    main()
         
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    window = Snippy()
-    window.show()
-    app.aboutToQuit.connect(app.deleteLater)
-    sys.exit(app.exec_())
     
     
