@@ -15,14 +15,42 @@ top.geometry("310x300")
 
 menubar=Menu(top)
 
+#FileMenu
 filemenu=Menu(menubar,tearoff=0)
 filemenu.add_command(label="Save Settings")
 filemenu.add_separator()
 filemenu.add_command(label="Exit")
 menubar.add_cascade(label="File", menu=filemenu)
 
+#BrowserOpen
+browsermenu = Menu(menubar, tearoff=0)
+##radio = StringVar()
+##menu_file.add_radiobutton(label='One', variable=radio, value=1)
+radio1 = StringVar()
+browsermenu.add_radiobutton(label='DISABLE', variable=radio1, value=1)
+browsermenu.add_radiobutton(label='DuckDuckGo', variable=radio1, value=2)
+browsermenu.add_radiobutton(label='Bing', variable=radio1, value=3)
+browsermenu.add_separator()
+browsermenu.add_radiobutton(label='Google', variable=radio1, value=4)
+menubar.add_cascade(label="BrowserOpen", menu=browsermenu)
+
+
+#LangMenu
+langmenu = Menu(menubar, tearoff=0)
+##radio = StringVar()
+##menu_file.add_radiobutton(label='One', variable=radio, value=1)
+radio = StringVar()
+langmenu.add_radiobutton(label='French', variable=radio, value=1)
+langmenu.add_radiobutton(label='German', variable=radio, value=2)
+langmenu.add_separator()
+langmenu.add_radiobutton(label='English', variable=radio, value=3)
+menubar.add_cascade(label="OCR Language", menu=langmenu)
+
+#HElpMenu
 helpmenu = Menu(menubar, tearoff=0)
 helpmenu.add_command(label="About")
+filemenu.add_separator()
+helpmenu.add_command(label="Version=8.8.8.8")
 menubar.add_cascade(label="Help", menu=helpmenu)
 
 # display the menu
